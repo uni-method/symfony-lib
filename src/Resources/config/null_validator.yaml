@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  UniMethod\SymfonyLib\Integration\NullConstraintChecker:
+    public: true
+
+  UniMethod\Frame\Integration\ConstraintCheckerInterface: '@UniMethod\SymfonyLib\Integration\NullConstraintChecker'

@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # Default limiter for symfony_lib.apis.<name>.rate_limit.
+  # Storage — cache.app, locks — lock.factory if symfony/lock is installed.
+  #
+  # Лимитер по умолчанию для symfony_lib.apis.<name>.rate_limit.
+  # Хранилище — cache.app, блокировки — lock.factory, если есть symfony/lock.
+  UniMethod\SymfonyLib\RateLimit\SymfonyRateLimiter:
+    arguments:
+      $cache: '@cache.app'
+      $lockFactory: '@?lock.factory'

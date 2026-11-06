@@ -1,0 +1,8 @@
+vendor/
+.phpactor.json
+.phpunit.result.cache
+/phpunit.xml
+/auth.json
+.zed/
+.idea/
+.vscode/

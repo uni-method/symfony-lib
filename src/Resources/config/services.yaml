@@ -1,0 +1,61 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  # API Controller
+  #
+  # Контроллер API
+  UniMethod\SymfonyLib\Controller\ApiController:
+    tags: ["controller.service_arguments"]
+    public: true
+
+  # Frame Core Services
+  #
+  # Базовые сервисы фреймворка
+  UniMethod\Frame\Config\JsonConfigLoader: ~
+
+  UniMethod\SymfonyLib\Config\YamlConfigLoader: ~
+
+  UniMethod\Frame\Type\TypeSpecParser: ~
+
+  UniMethod\Frame\Type\Caster: ~
+
+  UniMethod\Frame\Json\ConvertToStdClass: ~
+
+  UniMethod\Frame\Json\ConvertToJson: ~
+
+  UniMethod\Frame\Relation\TreeBuilder: ~
+
+  UniMethod\Frame\Mapping\AttributeAccessor: ~
+
+  # Constraint check context and helpers of shared constraints —
+  # without a dependency on symfony/validator
+  #
+  # Контекст проверки ограничений и помощники общих констрейнтов —
+  # без зависимости от symfony/validator
+  UniMethod\SymfonyLib\Constraint\ConstraintContextHolder: ~
+
+  UniMethod\SymfonyLib\Constraint\PropertyPathReader: ~
+
+  UniMethod\SymfonyLib\Constraint\RoleChecker: ~
+
+  # Config, Mappings, ActionValidator, ListLocators, ListSavers and API Service
+  # are created in RegisterApisPass for each configured API
+  #
+  # Optional integrations live in separate files and are loaded from
+  # SymfonyLibExtension depending on whether the library is installed:
+  #   doctrine.yaml       — doctrine/orm
+  #   validator.yaml      — symfony/validator: SymfonyConstraintChecker and shared
+  #                         constraints (otherwise null_validator.yaml)
+  #   security.yaml       — symfony/security-bundle
+  #
+  # Config, Mappings, ActionValidator, ListLocators, ListSavers и API Service
+  # создаются в RegisterApisPass для каждого настроенного API
+  #
+  # Опциональные интеграции живут в отдельных файлах и грузятся из
+  # SymfonyLibExtension по наличию библиотеки:
+  #   doctrine.yaml       — doctrine/orm
+  #   validator.yaml      — symfony/validator: SymfonyConstraintChecker и общие
+  #                         констрейнты (иначе null_validator.yaml)
+  #   security.yaml       — symfony/security-bundle

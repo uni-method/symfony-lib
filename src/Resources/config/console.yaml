@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  UniMethod\SymfonyLib\Config\ConfigChecker:
+    arguments:
+      $doctrine: '@?Doctrine\Persistence\ManagerRegistry'
+
+  UniMethod\SymfonyLib\Command\ValidateConfigCommand:
+    arguments:
+      $apiNames: '%symfony_lib.api_names%'
+      $repositories: !tagged_iterator symfony_lib.repository.collection

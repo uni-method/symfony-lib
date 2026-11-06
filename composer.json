@@ -1,0 +1,82 @@
+{
+  "name": "uni-method/symfony-lib",
+  "description": "Symfony bundle for UniMethod Frame: turns a declarative config into a REST API with routing, request and response mapping, constraint checks, access control and error handling",
+  "type": "symfony-bundle",
+  "keywords": [
+    "symfony",
+    "symfony-bundle",
+    "api",
+    "rest",
+    "crud",
+    "declarative",
+    "config",
+    "validation",
+    "access-control",
+    "doctrine"
+  ],
+  "homepage": "https://github.com/uni-method/symfony-lib",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Alexander Kompaneytsev",
+      "email": "kompaneytsev+git@live.com",
+      "homepage": "https://kompaneytsev.com",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/uni-method/symfony-lib/issues",
+    "source": "https://github.com/uni-method/symfony-lib"
+  },
+  "autoload": {
+    "psr-4": {
+      "UniMethod\\SymfonyLib\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "UniMethod\\SymfonyLib\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.3",
+    "ext-ctype": "*",
+    "symfony/framework-bundle": "^7|^8",
+    "uni-method/frame": "1.0.0",
+    "symfony/yaml": "^7|^8"
+  },
+  "require-dev": {
+    "doctrine/orm": "^3",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.4",
+    "rector/rector": "^2.2",
+    "squizlabs/php_codesniffer": "^4.0",
+    "symfony/console": "^7|^8",
+    "symfony/lock": "^7|^8",
+    "symfony/monolog-bundle": "^4.0",
+    "symfony/rate-limiter": "^7|^8",
+    "symfony/security-bundle": "^7|^8",
+    "symfony/validator": "^7|^8"
+  },
+  "scripts": {
+    "test": "phpunit",
+    "ci:phpcs": "phpcs",
+    "ci:phpstan": "phpstan analyse -c phpstan.neon --memory-limit=2G",
+    "ci:rector": "rector process --dry-run",
+    "ci:phpunit": "phpunit",
+    "ci:php-lint": "docker run --rm -v \"$PWD\":/app -w /app php:8.3-cli-alpine sh -c 'rc=0; for f in $(find src tests -name \"*.php\"); do php -d display_errors=stderr -d log_errors=0 -l \"$f\" >/dev/null || rc=1; done; exit $rc'",
+    "ci": [
+      "@ci:phpcs",
+      "@ci:phpstan",
+      "@ci:rector",
+      "@ci:phpunit"
+    ]
+  },
+  "suggest": {
+    "doctrine/orm": "DoctrineLocator, DoctrineSaver, DoctrineRemover",
+    "symfony/rate-limiter": "SymfonyRateLimiter: default limiter for apis.<name>.rate_limit",
+    "symfony/security-bundle": "SymfonyUserProvider: without it everything with access.authRequired or access.roles is denied (401)",
+    "symfony/validator": "SymfonyConstraintChecker, shared constraints and 422 instead of the NullConstraintChecker stub",
+    "symfony/yaml": "YamlConfigLoader for config_path with a .yaml/.yml extension"
+  }
+}

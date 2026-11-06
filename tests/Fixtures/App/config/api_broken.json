@@ -1,0 +1,22 @@
+{
+  "schema": {
+    "models": {
+      "post": { "attributes": { "id": { "type": "string|null" } } }
+    },
+    "actions": {
+      "post": { "read": {} }
+    }
+  },
+  "impl": {
+    "models": {
+      "post": {
+        "class": "UniMethod\\SymfonyLib\\Tests\\Fixtures\\App\\Entity\\Post",
+        "attributes": { "id": { "getter": "getId" } }
+      }
+    },
+    "actions": {
+      "post": { "read": { "entityLocator": "unregistered" } }
+    },
+    "locators": { "unregistered": "UniMethod\\SymfonyLib\\Tests\\Fixtures\\App\\Persistence\\UnregisteredLocator" }
+  }
+}

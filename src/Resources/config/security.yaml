@@ -1,0 +1,9 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  UniMethod\SymfonyLib\Integration\SymfonyUserProvider:
+    public: true
+
+  UniMethod\Frame\Integration\UserProviderInterface: '@UniMethod\SymfonyLib\Integration\SymfonyUserProvider'

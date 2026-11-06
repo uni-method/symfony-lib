@@ -1,0 +1,13 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  UniMethod\SymfonyLib\Integration\DoctrineSaver:
+    public: true
+
+  UniMethod\SymfonyLib\Integration\DoctrineLocator:
+    public: true
+
+  UniMethod\SymfonyLib\Integration\DoctrineRemover:
+    public: true

@@ -1,0 +1,35 @@
+schema:
+  models:
+    post:
+      attributes:
+        id: { type: 'string|null' }
+        title: { type: 'string|null' }
+  actions:
+    post:
+      create: {}
+      read: {}
+      update: {}
+      delete: {}
+      list: { config: {} }
+impl:
+  models:
+    post:
+      class: 'UniMethod\SymfonyLib\Tests\Fixtures\App\Entity\Post'
+      attributes:
+        id: { getter: getId }
+        title: {}
+  actions:
+    post:
+      create: { entitySaver: memory }
+      read: { entityLocator: memory }
+      update: { entityLocator: memory, entitySaver: memory }
+      delete: { entityLocator: memory, entityRemover: memory }
+      list:
+        config:
+          repository: 'UniMethod\SymfonyLib\Tests\Fixtures\App\Repository\PostRepository'
+  locators:
+    memory: 'UniMethod\SymfonyLib\Tests\Fixtures\App\Persistence\InMemoryLocator'
+  savers:
+    memory: 'UniMethod\SymfonyLib\Tests\Fixtures\App\Persistence\InMemorySaver'
+  removers:
+    memory: 'UniMethod\SymfonyLib\Tests\Fixtures\App\Persistence\InMemoryRemover'

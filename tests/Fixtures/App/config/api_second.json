@@ -1,0 +1,30 @@
+{
+  "schema": {
+    "models": {
+      "ghost": { "attributes": { "id": { "type": "string|null" } } }
+    },
+    "actions": {
+      "ghost": { "create": {}, "read": {}, "update": {}, "delete": {}, "list": { "config": {} } }
+    }
+  },
+  "impl": {
+    "models": {
+      "ghost": {
+        "class": "UniMethod\\SymfonyLib\\Tests\\Fixtures\\App\\Entity\\Ghost",
+        "attributes": { "id": { "getter": "getId" } }
+      }
+    },
+    "actions": {
+      "ghost": {
+        "create": { "entitySaver": "doctrine" },
+        "read": { "entityLocator": "doctrine" },
+        "update": { "entityLocator": "doctrine", "entitySaver": "doctrine" },
+        "delete": { "entityLocator": "doctrine", "entityRemover": "doctrine" },
+        "list": { "config": { "repository": "UniMethod\\SymfonyLib\\Tests\\Fixtures\\App\\Repository\\PostRepository" } }
+      }
+    },
+    "locators": { "doctrine": "UniMethod\\SymfonyLib\\Integration\\DoctrineLocator" },
+    "savers": { "doctrine": "UniMethod\\SymfonyLib\\Integration\\DoctrineSaver" },
+    "removers": { "doctrine": "UniMethod\\SymfonyLib\\Integration\\DoctrineRemover" }
+  }
+}

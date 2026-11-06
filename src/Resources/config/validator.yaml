@@ -1,0 +1,21 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  UniMethod\SymfonyLib\Integration\SymfonyConstraintChecker:
+    public: true
+
+  UniMethod\Frame\Integration\ConstraintCheckerInterface: '@UniMethod\SymfonyLib\Integration\SymfonyConstraintChecker'
+
+  # Shared constraints. Validators get the validator.constraint_validator tag
+  # via autoconfigure; RoleChecker takes UserProviderInterface if it exists
+  # (security.yaml), otherwise it works by UserInterface::hasRole().
+  #
+  # Общие констрейнты. Валидаторы получают тег validator.constraint_validator
+  # через autoconfigure; RoleChecker берёт UserProviderInterface, если он есть
+  # (security.yaml), иначе работает по UserInterface::hasRole().
+  UniMethod\SymfonyLib\Constraint\OwnedByCurrentUserValidator: ~
+  UniMethod\SymfonyLib\Constraint\HasRoleValidator: ~
+  UniMethod\SymfonyLib\Constraint\UnchangedOnUpdateValidator: ~
+  UniMethod\SymfonyLib\Constraint\ScopedToCurrentUserValidator: ~
